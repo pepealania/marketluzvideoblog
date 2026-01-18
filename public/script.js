@@ -6,9 +6,17 @@ const remoteVideo = document.getElementById("remoteVideo");
 let localStream;
 let peerConnection;
 let remoteUserId;
+let pendingCandidates = [];
 
 const config = {
-  iceServers: [{ urls: "stun:stun.l.google.com:19302" }]
+  iceServers: [
+    { urls: "stun:stun.l.google.com:19302" },
+    {
+      urls: "turn:openrelay.metered.ca:80",
+      username: "openrelayproject",
+      credential: "openrelayproject"
+    }
+  ]
 };
 
 async function start() {
@@ -24,6 +32,8 @@ async function start() {
 }
 
 socket.on("user-joined", async (userId) => {
+  if (peerConnection) return;
+
   remoteUserId = userId;
   createPeerConnection();
 
@@ -32,43 +42,57 @@ socket.on("user-joined", async (userId) => {
 
   socket.emit("signal", {
     to: remoteUserId,
-    signal: offer
+    signal: peerConnection.localDescription
   });
 });
 
-socket.on("signal", async (data) => {
+socket.on("signal", async ({ from, signal }) => {
   if (!peerConnection) {
-    remoteUserId = data.from;
+    remoteUserId = from;
     createPeerConnection();
   }
 
-  if (data.signal.type === "offer") {
-    await peerConnection.setRemoteDescription(data.signal);
+  if (signal.type === "offer") {
+    await peerConnection.setRemoteDescription(signal);
 
     const answer = await peerConnection.createAnswer();
     await peerConnection.setLocalDescription(answer);
 
     socket.emit("signal", {
-      to: remoteUserId,
-      signal: answer
+      to: from,
+      signal: peerConnection.localDescription
     });
+
+    pendingCandidates.forEach(c =>
+      peerConnection.addIceCandidate(c)
+    );
+    pendingCandidates = [];
   }
 
-  if (data.signal.type === "answer") {
-    await peerConnection.setRemoteDescription(data.signal);
+  if (signal.type === "answer") {
+    await peerConnection.setRemoteDescription(signal);
+
+    pendingCandidates.forEach(c =>
+      peerConnection.addIceCandidate(c)
+    );
+    pendingCandidates = [];
   }
 
-  if (data.signal.type === "candidate") {
-    await peerConnection.addIceCandidate(data.signal.candidate);
+  if (signal.type === "candidate") {
+    if (peerConnection.remoteDescription) {
+      await peerConnection.addIceCandidate(signal.candidate);
+    } else {
+      pendingCandidates.push(signal.candidate);
+    }
   }
 });
 
 function createPeerConnection() {
   peerConnection = new RTCPeerConnection(config);
 
-  localStream.getTracks().forEach(track => {
-    peerConnection.addTrack(track, localStream);
-  });
+  localStream.getTracks().forEach(track =>
+    peerConnection.addTrack(track, localStream)
+  );
 
   peerConnection.ontrack = (event) => {
     remoteVideo.srcObject = event.streams[0];
@@ -84,6 +108,10 @@ function createPeerConnection() {
         }
       });
     }
+  };
+
+  peerConnection.oniceconnectionstatechange = () => {
+    console.log("ICE:", peerConnection.iceConnectionState);
   };
 }
 
