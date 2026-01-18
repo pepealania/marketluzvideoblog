@@ -1,4 +1,4 @@
-const socket = io("https://your-app.onrender.com");
+const socket = io("https://marketluzvideoblog.onrender.com/");
 
 const localVideo = document.getElementById("localVideo");
 const remoteVideo = document.getElementById("remoteVideo");
