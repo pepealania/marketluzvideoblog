@@ -1,4 +1,4 @@
-const socket = io();
+const socket = io("https://your-app.onrender.com");
 const localVideo = document.getElementById('localVideo');
 const remoteVideo = document.getElementById('remoteVideo');
 
@@ -44,9 +44,21 @@ function createPeerConnection(userId, isOfferer) {
         remoteVideo.srcObject = event.streams[0];
     };
 
+    // peerConnection.onicecandidate = (event) => {
+    //     if (event.candidate) return;
+    //     socket.emit('signal', { to: userId, signal: peerConnection.localDescription });
+    // };
+
     peerConnection.onicecandidate = (event) => {
-        if (event.candidate) return;
-        socket.emit('signal', { to: userId, signal: peerConnection.localDescription });
+        if (event.candidate) {
+            socket.emit('signal', {
+                to: userId,
+                signal: {
+                    type: 'candidate',
+                    candidate: event.candidate
+                }
+            });
+        }
     };
 
     if (isOfferer) {
