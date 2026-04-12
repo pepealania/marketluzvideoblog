@@ -17,31 +17,74 @@
       padding: 15px;
     }
 
-    /* CONTENEDOR DE VIDEOS */
+    /*  3x2 */
     .videos {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
       gap: 20px;
       padding: 20px;
-      flex-wrap: wrap;
+      justify-items: center;
     }
 
-    /* CADA VIDEO */
+    .video-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
     video {
-      width: 300px;
-      height: 500px; /* vertical */
+      width: 220px;
+      height: 350px;
       object-fit: cover;
-      border-radius: 20px; /* ovalados */
+      border-radius: 20px;
       background: black;
       box-shadow: 0 5px 15px rgba(0,0,0,0.5);
     }
 
-    
+    .user-info {
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #1a1a1a;
+      padding: 6px 10px;
+      border-radius: 12px;
+    }
+
+    .avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: #444;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+
+    .text {
+      font-size: 12px;
+      text-align: left;
+    }
+
+    .name {
+      color: white;
+      font-size: 13px;
+    }
+
+    /* destacar video yo princiapl */
+    .main-user video {
+      border: 2px solid #00aaff;
+    }
+
     @media (max-width: 768px) {
+      .videos {
+        grid-template-columns: 1fr;
+      }
+
       video {
         width: 90%;
-        height: 400px;
+        height: 300px;
       }
     }
   </style>
@@ -52,9 +95,92 @@
   <h2>🎥 Marketluz videollamada</h2>
 
   <div class="videos">
-    <video id="localVideo" autoplay muted playsinline></video>
-    <video id="remoteVideo" autoplay playsinline></video>
+
+    <!-- arriba izquuierda -->
+    <div class="video-box">
+      <video autoplay muted></video>
+      <div class="user-info">
+        <div class="avatar">J</div>
+        <div class="text">
+          <div class="name">Jose Carlos</div>
+          <div>Desde Lima • Emisor</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- arriba centro yo -->
+    <div class="video-box main-user">
+      <video id="localVideo" autoplay muted playsinline></video>
+      <div class="user-info">
+        <div class="avatar" id="avatar1"></div>
+        <div class="text">
+          <div class="name">Jose 1 (Tú)</div>
+          <div>Desde Lima • Emisor</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- arriba derecha -->
+    <div class="video-box">
+      <video id="remoteVideo" autoplay playsinline></video>
+      <div class="user-info">
+        <div class="avatar" id="avatar2"></div>
+        <div class="text">
+          <div class="name">Vladimir</div>
+          <div>Desde Lima • Receptor</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- abajo izquierda -->
+    <div class="video-box">
+      <video autoplay muted></video>
+      <div class="user-info">
+        <div class="avatar">A</div>
+        <div class="text">
+          <div class="name">Andrea</div>
+          <div>Desde Perú • Usuario</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- abajo centro -->
+    <div class="video-box">
+      <video autoplay muted></video>
+      <div class="user-info">
+        <div class="avatar">L</div>
+        <div class="text">
+          <div class="name">Luis</div>
+          <div>Desde Perú • Usuario</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- abajo derecha-->
+    <div class="video-box">
+      <video autoplay muted></video>
+      <div class="user-info">
+        <div class="avatar">M</div>
+        <div class="text">
+          <div class="name">Maria</div>
+          <div>Desde Perú • Usuario</div>
+        </div>
+      </div>
+    </div>
+
   </div>
+
+  <script>
+    function obtenerInicial(nombre) {
+      return nombre.charAt(0).toUpperCase();
+    }
+
+    const nombre1 = "Jose 1";
+    const nombre2 = "Vladimir";
+
+    document.getElementById("avatar1").textContent = obtenerInicial(nombre1);
+    document.getElementById("avatar2").textContent = obtenerInicial(nombre2);
+  </script>
 
   <script src="/socket.io/socket.io.js"></script>
   <script src="script.js"></script>
