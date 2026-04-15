@@ -17,7 +17,22 @@
       padding: 15px;
     }
 
-    /*  3x2 */
+    /* BOTÓN */
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      background: #00aaff;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #008ecc;
+    }
+
     .videos {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -27,6 +42,7 @@
     }
 
     .video-box {
+      position: relative;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -39,6 +55,26 @@
       border-radius: 20px;
       background: black;
       box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+      border: 3px solid #00c853;
+      position: relative;
+      z-index: 1;
+    }
+
+    .main-user video {
+      border: 3px solid #00aaff;
+    }
+
+    .icon-user {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 18px;
+      color: #aaa;
+      background: rgba(0,0,0,0.4);
+      padding: 5px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 2;
     }
 
     .user-info {
@@ -72,11 +108,6 @@
       font-size: 13px;
     }
 
-    /* destacar video yo princiapl */
-    .main-user video {
-      border: 2px solid #00aaff;
-    }
-
     @media (max-width: 768px) {
       .videos {
         grid-template-columns: 1fr;
@@ -94,10 +125,12 @@
 
   <h2>🎥 Marketluz videollamada</h2>
 
+  
+
   <div class="videos">
 
-    <!-- arriba izquuierda -->
     <div class="video-box">
+      <div class="icon-user">👤</div>
       <video autoplay muted></video>
       <div class="user-info">
         <div class="avatar">J</div>
@@ -108,8 +141,9 @@
       </div>
     </div>
 
-    <!-- arriba centro yo -->
+    <!-- yo-->
     <div class="video-box main-user">
+      <div class="icon-user">👤</div>
       <video id="localVideo" autoplay muted playsinline></video>
       <div class="user-info">
         <div class="avatar" id="avatar1"></div>
@@ -120,8 +154,8 @@
       </div>
     </div>
 
-    <!-- arriba derecha -->
     <div class="video-box">
+      <div class="icon-user">👤</div>
       <video id="remoteVideo" autoplay playsinline></video>
       <div class="user-info">
         <div class="avatar" id="avatar2"></div>
@@ -132,8 +166,8 @@
       </div>
     </div>
 
-    <!-- abajo izquierda -->
     <div class="video-box">
+      <div class="icon-user">👤</div>
       <video autoplay muted></video>
       <div class="user-info">
         <div class="avatar">A</div>
@@ -144,8 +178,8 @@
       </div>
     </div>
 
-    <!-- abajo centro -->
     <div class="video-box">
+      <div class="icon-user">👤</div>
       <video autoplay muted></video>
       <div class="user-info">
         <div class="avatar">L</div>
@@ -156,8 +190,8 @@
       </div>
     </div>
 
-    <!-- abajo derecha-->
     <div class="video-box">
+      <div class="icon-user">👤</div>
       <video autoplay muted></video>
       <div class="user-info">
         <div class="avatar">M</div>
@@ -171,6 +205,7 @@
   </div>
 
   <script>
+    // Iniciales
     function obtenerInicial(nombre) {
       return nombre.charAt(0).toUpperCase();
     }
@@ -180,6 +215,8 @@
 
     document.getElementById("avatar1").textContent = obtenerInicial(nombre1);
     document.getElementById("avatar2").textContent = obtenerInicial(nombre2);
+
+    
   </script>
 
   <script src="/socket.io/socket.io.js"></script>
