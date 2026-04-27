@@ -17,25 +17,9 @@
       padding: 15px;
     }
 
-    /* BOTÓN */
-    button {
-      margin: 10px;
-      padding: 10px 20px;
-      background: #00aaff;
-      border: none;
-      border-radius: 10px;
-      color: white;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    button:hover {
-      background: #008ecc;
-    }
-
     .videos {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(5, 1fr); /*  CAMBIO A 5 */
       gap: 20px;
       padding: 20px;
       justify-items: center;
@@ -125,9 +109,9 @@
 
   <h2>🎥 Marketluz videollamada</h2>
 
-  
-
   <div class="videos">
+
+    <!-- FILA 1 -->
 
     <div class="video-box">
       <div class="icon-user">👤</div>
@@ -141,7 +125,19 @@
       </div>
     </div>
 
-    <!-- yo-->
+    <div class="video-box">
+      <div class="icon-user">👤</div>
+      <video autoplay muted></video>
+      <div class="user-info">
+        <div class="avatar">A</div>
+        <div class="text">
+          <div class="name">Andrea</div>
+          <div>Desde Perú • Usuario</div>
+        </div>
+      </div>
+    </div>
+
+    <!--  YO CENTRO -->
     <div class="video-box main-user">
       <div class="icon-user">👤</div>
       <video id="localVideo" autoplay muted playsinline></video>
@@ -170,18 +166,6 @@
       <div class="icon-user">👤</div>
       <video autoplay muted></video>
       <div class="user-info">
-        <div class="avatar">A</div>
-        <div class="text">
-          <div class="name">Andrea</div>
-          <div>Desde Perú • Usuario</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="video-box">
-      <div class="icon-user">👤</div>
-      <video autoplay muted></video>
-      <div class="user-info">
         <div class="avatar">L</div>
         <div class="text">
           <div class="name">Luis</div>
@@ -189,6 +173,8 @@
         </div>
       </div>
     </div>
+
+    <!-- FILA 2 -->
 
     <div class="video-box">
       <div class="icon-user">👤</div>
@@ -202,10 +188,57 @@
       </div>
     </div>
 
+    <div class="video-box">
+      <div class="icon-user">👤</div>
+      <video autoplay muted></video>
+      <div class="user-info">
+        <div class="avatar">C</div>
+        <div class="text">
+          <div class="name">Carlos</div>
+          <div>Desde Perú • Usuario</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-box">
+      <div class="icon-user">👤</div>
+      <video autoplay muted></video>
+      <div class="user-info">
+        <div class="avatar">P</div>
+        <div class="text">
+          <div class="name">Paola</div>
+          <div>Desde Perú • Usuario</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-box">
+      <div class="icon-user">👤</div>
+      <video autoplay muted></video>
+      <div class="user-info">
+        <div class="avatar">R</div>
+        <div class="text">
+          <div class="name">Renzo</div>
+          <div>Desde Perú • Usuario</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-box">
+      <div class="icon-user">👤</div>
+      <video autoplay muted></video>
+      <div class="user-info">
+        <div class="avatar">S</div>
+        <div class="text">
+          <div class="name">Sofia</div>
+          <div>Desde Perú • Usuario</div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <script>
-    // Iniciales
     function obtenerInicial(nombre) {
       return nombre.charAt(0).toUpperCase();
     }
@@ -215,8 +248,6 @@
 
     document.getElementById("avatar1").textContent = obtenerInicial(nombre1);
     document.getElementById("avatar2").textContent = obtenerInicial(nombre2);
-
-    
   </script>
 
   <script src="/socket.io/socket.io.js"></script>
