@@ -54,6 +54,10 @@
   align-items: center;
 }
 
+.video-box {
+  position: relative;
+}
+
 /* VIDEO */
 video {
   width: 220px;
@@ -78,24 +82,29 @@ video:hover {
   box-shadow: 0 12px 30px rgba(0,0,0,0.2);
 }
 
-/* ICONO */
 .icon-user {
   position: absolute;
+
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -70%); /*  ajuste*/
 
-  font-size: 28px; /* más pequeño y equilibrado */
-  color: #CFE6DF; /*  icono más claro (verde suave) */
+  font-size: 39px;
+  color: #CFE6DF;
 
-  background: rgba(255,255,255,0.8); /* fondo claro más limpio */
-  padding: 10px; /*  menos padding */
+  background: rgba(255,255,255,0.85);
+  padding: 33px;
   border-radius: 50%;
 
   pointer-events: none;
   z-index: 2;
 }
 
+.icon-user img {
+  width: 90px;
+  height: 90px;
+  opacity: 0.1; /* 👈 50% transparente */
+}
     .user-info {
   margin-top: 10px;
   display: flex;
@@ -118,6 +127,7 @@ video:hover {
   align-items: center;
   justify-content: center;
   font-weight: bold;
+  opacity: 0.05; /* 👈 50% transparente */
 }
 
 .name {
@@ -126,9 +136,9 @@ video:hover {
   font-weight: 600;
 }
 
-.main-user .icon-user {
+/*.main-user .icon-user {
   display: none;
-}
+}*/
 
 .text {
   font-size: 12px;
@@ -157,129 +167,147 @@ video:hover {
     <!-- FILA 1 -->
 
     <div class="video-box">
-      <div class="icon-user">👤</div>
-      <video autoplay muted></video>
-      <div class="user-info">
-        <div class="avatar">J</div>
-        <div class="text">
-          <div class="name">Jose Carlos</div>
-          <div>Desde Lima • Emisor</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="video-box">
-      <div class="icon-user">👤</div>
-      <video autoplay muted></video>
-      <div class="user-info">
-        <div class="avatar">A</div>
-        <div class="text">
-          <div class="name">Andrea</div>
-          <div>Desde Perú • Usuario</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 👇 TU VIDEO -->
-    <div class="video-box main-user">
-      <div class="icon-user">👤</div>
-      <video id="localVideo" autoplay muted playsinline></video>
-      <div class="user-info">
-        <div class="avatar" id="avatar1"></div>
-        <div class="text">
-          <div class="name">Jose 1 (Tú)</div>
-          <div>Desde Lima • Emisor</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="video-box">
-      <div class="icon-user">👤</div>
-      <video id="remoteVideo" autoplay playsinline></video>
-      <div class="user-info">
-        <div class="avatar" id="avatar2"></div>
-        <div class="text">
-          <div class="name">Vladimir</div>
-          <div>Desde Lima • Receptor</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="video-box">
-      <div class="icon-user">👤</div>
-      <video autoplay muted></video>
-      <div class="user-info">
-        <div class="avatar">L</div>
-        <div class="text">
-          <div class="name">Luis</div>
-          <div>Desde Perú • Usuario</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- FILA 2 -->
-
-    <div class="video-box">
-      <div class="icon-user">👤</div>
-      <video autoplay muted></video>
-      <div class="user-info">
-        <div class="avatar">M</div>
-        <div class="text">
-          <div class="name">Maria</div>
-          <div>Desde Perú • Usuario</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="video-box">
-      <div class="icon-user">👤</div>
-      <video autoplay muted></video>
-      <div class="user-info">
-        <div class="avatar">C</div>
-        <div class="text">
-          <div class="name">Carlos</div>
-          <div>Desde Perú • Usuario</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="video-box">
-      <div class="icon-user">👤</div>
-      <video autoplay muted></video>
-      <div class="user-info">
-        <div class="avatar">P</div>
-        <div class="text">
-          <div class="name">Paola</div>
-          <div>Desde Perú • Usuario</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="video-box">
-      <div class="icon-user">👤</div>
-      <video autoplay muted></video>
-      <div class="user-info">
-        <div class="avatar">R</div>
-        <div class="text">
-          <div class="name">Renzo</div>
-          <div>Desde Perú • Usuario</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="video-box">
-      <div class="icon-user">👤</div>
-      <video autoplay muted></video>
-      <div class="user-info">
-        <div class="avatar">S</div>
-        <div class="text">
-          <div class="name">Sofia</div>
-          <div>Desde Perú • Usuario</div>
-        </div>
-      </div>
-    </div>
-
+  <div class="icon-user">
+    <img src="icono.svg" alt="usuario">
   </div>
+  <video autoplay muted></video>
+  <div class="user-info">
+    <div class="avatar">J</div>
+    <div class="text">
+      <div class="name">Jose Carlos</div>
+      <div>Desde Lima • Emisor</div>
+    </div>
+  </div>
+</div>
+
+    <div class="video-box">
+  <div class="icon-user">
+    <img src="icono.svg" alt="usuario">
+  </div>
+  <video autoplay muted></video>
+  <div class="user-info">
+    <div class="avatar">A</div>
+    <div class="text">
+      <div class="name">Andrea</div>
+      <div>Desde Perú • Usuario</div>
+    </div>
+  </div>
+</div>
+
+<!-- 👇 TU VIDEO -->
+<div class="video-box main-user">
+  <div class="icon-user">
+    <img src="icono.svg" alt="usuario">
+  </div>
+  <video id="localVideo" autoplay muted playsinline></video>
+  <div class="user-info">
+    <div class="avatar" id="avatar1"></div>
+    <div class="text">
+      <div class="name">Jose 1 (Tú)</div>
+      <div>Desde Lima • Emisor</div>
+    </div>
+  </div>
+</div>
+
+<div class="video-box">
+  <div class="icon-user">
+    <img src="icono.svg" alt="usuario">
+  </div>
+  <video id="remoteVideo" autoplay playsinline></video>
+  <div class="user-info">
+    <div class="avatar" id="avatar2"></div>
+    <div class="text">
+      <div class="name">Vladimir</div>
+      <div>Desde Lima • Receptor</div>
+    </div>
+  </div>
+</div>
+
+<div class="video-box">
+  <div class="icon-user">
+    <img src="icono.svg" alt="usuario">
+  </div>
+  <video autoplay muted></video>
+  <div class="user-info">
+    <div class="avatar">L</div>
+    <div class="text">
+      <div class="name">Luis</div>
+      <div>Desde Perú • Usuario</div>
+    </div>
+  </div>
+</div>
+
+<!-- FILA 2 -->
+
+<div class="video-box">
+  <div class="icon-user">
+    <img src="icono.svg" alt="usuario">
+  </div>
+  <video autoplay muted></video>
+  <div class="user-info">
+    <div class="avatar">M</div>
+    <div class="text">
+      <div class="name">Maria</div>
+      <div>Desde Perú • Usuario</div>
+    </div>
+  </div>
+</div>
+
+<div class="video-box">
+  <div class="icon-user">
+    <img src="icono.svg" alt="usuario">
+  </div>
+  <video autoplay muted></video>
+  <div class="user-info">
+    <div class="avatar">C</div>
+    <div class="text">
+      <div class="name">Carlos</div>
+      <div>Desde Perú • Usuario</div>
+    </div>
+  </div>
+</div>
+
+<div class="video-box">
+  <div class="icon-user">
+    <img src="icono.svg" alt="usuario">
+  </div>
+  <video autoplay muted></video>
+  <div class="user-info">
+    <div class="avatar">P</div>
+    <div class="text">
+      <div class="name">Paola</div>
+      <div>Desde Perú • Usuario</div>
+    </div>
+  </div>
+</div>
+
+<div class="video-box">
+  <div class="icon-user">
+    <img src="icono.svg" alt="usuario">
+  </div>
+  <video autoplay muted></video>
+  <div class="user-info">
+    <div class="avatar">R</div>
+    <div class="text">
+      <div class="name">Renzo</div>
+      <div>Desde Perú • Usuario</div>
+    </div>
+  </div>
+</div>
+
+<div class="video-box">
+  <div class="icon-user">
+    <img src="icono.svg" alt="usuario">
+  </div>
+  <video autoplay muted></video>
+  <div class="user-info">
+    <div class="avatar">S</div>
+    <div class="text">
+      <div class="name">Sofia</div>
+      <div>Desde Perú • Usuario</div>
+    </div>
+  </div>
+</div>
 
   <script>
     function obtenerInicial(nombre) {
